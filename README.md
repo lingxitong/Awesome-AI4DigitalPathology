@@ -507,6 +507,7 @@ This repository aims to:
 - **PathReasoning** — query-guided ROI navigation. [![Paper](https://img.shields.io/badge/Paper-arXiv%202025-6A5ACD.svg)](https://arxiv.org/abs/2511.21902)
 - **LoC-Path** — compressed pathology MLLM. [![Paper](https://img.shields.io/badge/Paper-arXiv%202025-6A5ACD.svg)](https://arxiv.org/abs/2512.05391)
 - **MPath** — visual-prefix WSI reporting. [![Paper](https://img.shields.io/badge/Paper-arXiv%202025-6A5ACD.svg)](https://arxiv.org/abs/2512.11906)
+- **HiVE-MIL** — hierarchical vision-language few-shot WSI MIL. [![Paper](https://img.shields.io/badge/Paper-NeurIPS%202025-d62728.svg)](https://openreview.net/forum?id=ZC2rbIYWfy) [![Code](https://img.shields.io/badge/Code-GitHub-green.svg)](https://github.com/bryanwong17/HiVE-MIL)
 - **ANTONI-α** — open WSI pathology copilot. [![Paper](https://img.shields.io/badge/Paper-MIDL%202026-d62728.svg)](https://openreview.net/forum?id=aGPowreqPi)
 - **PathFound** — agentic pathology diagnosis. [![Paper](https://img.shields.io/badge/Paper-arXiv%202025-6A5ACD.svg)](https://arxiv.org/abs/2512.23545)
 - **DomainSAT for Pathology VLMs** — pathology VLM shift detection. [![Paper](https://img.shields.io/badge/Paper-arXiv%202026-6A5ACD.svg)](https://arxiv.org/abs/2601.00716)
@@ -517,6 +518,7 @@ This repository aims to:
 - **QCAgent** — agentic pathology report generation. [![Paper](https://img.shields.io/badge/Paper-arXiv%202026-6A5ACD.svg)](https://arxiv.org/abs/2603.01647)
 - **MLLM-HWSI** — holistic WSI MLLM analysis. [![Paper](https://img.shields.io/badge/Paper-arXiv%202026-6A5ACD.svg)](https://arxiv.org/abs/2603.23067)
 - **PBSBench** — pathology slide VL benchmark. [![Paper](https://img.shields.io/badge/Paper-arXiv%202026-6A5ACD.svg)](https://arxiv.org/abs/2604.17570)
+- **BEACON** — Bayesian evidence acquisition agent for WSI reasoning. [![Paper](https://img.shields.io/badge/Paper-arXiv%202026-6A5ACD.svg)](https://arxiv.org/abs/2608.05757) [![Code](https://img.shields.io/badge/Code-GitHub-green.svg)](https://github.com/bryanwong17/BEACON)
 - **CONCH v1.5** — upgraded pathology VLM encoder. [![HuggingFace](https://img.shields.io/badge/HuggingFace-Model-yellow.svg)](https://huggingface.co/MahmoodLab/conchv1_5)
 - **MLLM4BioMed** — biomedical MLLM paper tracker. [![Code](https://img.shields.io/badge/Code-GitHub-green.svg)](https://github.com/ncbi-nlp/MLLM4BioMed)
 
