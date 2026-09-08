@@ -162,6 +162,7 @@ This repository aims to:
 - **STAMP** — solid tumor associative modeling benchmark in pathology. [![Code](https://img.shields.io/badge/Code-GitHub-green.svg)](https://github.com/KatherLab/STAMP-Benchmark)
 - **THUNDER** — benchmark for classification, calibration, robustness, and segmentation. [![Website](https://img.shields.io/badge/Website-Leaderboard-ffb6c1.svg)](https://mics-lab.github.io/thunder/)
 - **PathoROB** — robustness benchmark for pathology foundation models. [![Code](https://img.shields.io/badge/Code-GitHub-green.svg)](https://github.com/bifold-pathomics/PathoROB)
+- **WBCBench 2026** — robust white blood cell classification under class imbalance and image degradation (ISBI 2026 challenge; 101k single-cell images, 13 classes, patient-level splits). [![Paper](https://img.shields.io/badge/Paper-ISBI%202026-d62728.svg)](https://arxiv.org/abs/2604.10797) [![Dataset](https://img.shields.io/badge/Dataset-HuggingFace-orange.svg)](https://huggingface.co/datasets/Xin-Tian/wbcbench2026) [![Website](https://img.shields.io/badge/Website-Challenge-ffb6c1.svg)](https://xudong-ma.github.io/WBCBench2026-Robust-White-Blood-Cell-Classification/)
 - **MindLab-DP/Datasets** — practical collection of digital pathology datasets. [![Code](https://img.shields.io/badge/Code-GitHub-green.svg)](https://github.com/MindLab-DP/Datasets)
 - **TCGA Processing Pipeline for MIL** — WSI preprocessing for weak supervision. [![Code](https://img.shields.io/badge/Code-GitHub-green.svg)](https://github.com/liupei101/Pipeline-Processing-TCGA-Slides-for-MIL)
 ---
