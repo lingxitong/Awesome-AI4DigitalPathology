@@ -402,6 +402,7 @@ This repository aims to:
 - **SpatialFusion** — multimodal niche discovery from ST and histology. [![Paper](https://img.shields.io/badge/Paper-bioRxiv%202026-6A5ACD.svg)](https://www.biorxiv.org/content/10.64898/2026.03.16.712056v1) [![Code](https://img.shields.io/badge/Code-GitHub-green.svg)](https://github.com/uhlerlab/spatialfusion)
 - **InSTaPath** — histology and ST topic learning. [![Paper](https://img.shields.io/badge/Paper-bioRxiv%202026-6A5ACD.svg)](https://www.biorxiv.org/content/10.64898/2026.03.16.712067v1) [![Code](https://img.shields.io/badge/Code-GitHub-green.svg)](https://github.com/xwymary/InSTaPath)
 - **HistoAtlas** - a pan-cancer morphology atlas linking histomics to molecular programs and clinical outcomes. [![Paper](https://arxiv.org/abs/2603.16587)] [![Website](https://histoatlas.com/)] 
+- **Spatial-Continuum-Oncology** — reaction-diffusion transport biophysics and bedside CRI integrating routine H&E with Visium HD spatial transcriptomics in EGFR-mutant lung cancer. [![Paper](https://img.shields.io/badge/Paper-ResearchSquare%202026-blue.svg)](https://doi.org/10.21203/rs.3.rs-11530312/v1) [![Code](https://img.shields.io/badge/Code-GitHub-green.svg)](https://github.com/Lukecele/spatial-continuum-oncology) 
 ---
 
 ## Generative Models for Computational Pathology
