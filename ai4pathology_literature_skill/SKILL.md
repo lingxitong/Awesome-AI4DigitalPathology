@@ -63,6 +63,10 @@ For every paper or resource, normalize it into the following fields:
   "contribution": "one-sentence contribution",
   "limitation": "main limitation if known",
   "paper_url": "https://...",
+  "pdf_url": "https://...",
+  "conference_url": "https://...",
+  "venue_status": "official_proceedings_or_program | author_reported_acceptance_official_page_pending | unknown",
+  "venue_evidence_url": "https://...",
   "code_url": "https://...",
   "dataset_url": "https://...",
   "model_url": "https://...",
@@ -90,7 +94,8 @@ Rules:
   - Dataset: `Dataset-Website-orange.svg` or dataset platform name
   - Model: `Model-HuggingFace-yellow.svg`
   - Website: `Website-Leaderboard-ffb6c1.svg`
-- Place each item under the most specific category.
+- Place each item under the most specific category. Conference-paper updates also appear in the README's venue section and the generated `VENUES.md` view.
+- Link a direct PDF and official conference site when available. Record the evidence for venue attribution; distinguish author-reported acceptance from an official paper page.
 - If a paper spans multiple categories, place it in the primary category and add cross-reference tags in the JSONL index.
 
 ## Update Mode Workflow
@@ -255,4 +260,3 @@ If the agent cannot access the internet or GitHub repository:
 - Produce entries marked as `metadata_to_verify` when necessary.
 
 If the user asks for automatic scheduled updates, explain that this requires an external scheduler such as cron, GitHub Actions, or an automation tool. Then provide the update prompt and output format.
-

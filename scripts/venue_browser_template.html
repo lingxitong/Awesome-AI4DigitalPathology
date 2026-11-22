@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI4DigitalPathology · Venue Browser</title>
+  <style>
+    :root { color-scheme: light; --ink:#172836; --muted:#5b6b75; --line:#dce7e6; --teal:#126b67; --pale:#f3faf8; }
+    * { box-sizing:border-box; }
+    body { margin:0; font:15px/1.5 system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; color:var(--ink); background:#f6f8f7; }
+    header { background:linear-gradient(120deg,#113d48,#166b67); color:white; padding:42px max(24px,calc((100vw - 1180px)/2)); }
+    header h1 { margin:0 0 8px; font-size:clamp(26px,4vw,39px); letter-spacing:-.03em; }
+    header p { max-width:850px; margin:0; color:#dcefed; }
+    .shell { max-width:1180px; margin:0 auto; padding:25px 24px 70px; }
+    .filters { display:grid; grid-template-columns:minmax(210px,2fr) repeat(3,minmax(130px,1fr)); gap:12px; background:white; border:1px solid var(--line); border-radius:16px; padding:16px; box-shadow:0 8px 28px #183f3910; }
+    label { display:block; font-weight:650; font-size:13px; color:var(--muted); margin:0 0 6px; }
+    input,select { width:100%; padding:11px 12px; border:1px solid #c9d8d5; border-radius:9px; background:#fff; color:var(--ink); font:inherit; }
+    input:focus,select:focus { outline:2px solid #9bcfca; outline-offset:1px; }
+    .meta { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin:20px 0 14px; color:var(--muted); }
+    .meta strong { color:var(--ink); }
+    .meta a { color:var(--teal); }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(305px,1fr)); gap:14px; }
+    article { background:white; border:1px solid var(--line); border-radius:14px; padding:18px; display:flex; flex-direction:column; min-height:230px; }
+    .tags { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:11px; }
+    .tag { font-size:11px; font-weight:700; color:#245a58; background:#e7f4f1; padding:3px 8px; border-radius:999px; }
+    .tag.year { color:#636047; background:#f5f0d9; }
+    article h2 { margin:0 0 8px; font-size:17px; line-height:1.35; }
+    article p { margin:0 0 14px; color:var(--muted); }
+    .links { display:flex; flex-wrap:wrap; gap:8px; margin-top:auto; }
+    .links a { color:var(--teal); border:1px solid #b9d5d1; border-radius:7px; padding:6px 10px; text-decoration:none; font-weight:650; font-size:13px; }
+    .links a:hover { background:var(--pale); }
+    .note { color:#785221; background:#fff4d9; border-radius:7px; padding:5px 8px; font-size:12px; margin-bottom:12px; }
+    .empty { background:white; padding:30px; border-radius:12px; border:1px solid var(--line); }
+    @media (max-width:760px) { .filters { grid-template-columns:repeat(2,1fr); } .filters .search { grid-column:1/-1; } }
+    @media (max-width:480px) { .filters { grid-template-columns:1fr; } .filters .search { grid-column:auto; } .shell { padding:18px 15px 50px; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>AI4DigitalPathology · 按会议与期刊筛选</h1>
+    <p>在本地筛选会议、期刊、年份和关键词。2026 年主会议论文附论文页、直接 PDF 和会议页；MICCAI 2026 的作者公布录用条目另有标注。数据核对日期：2026-09-16。</p>
+  </header>
+  <main class="shell">
+    <div class="filters">
+      <div class="search"><label for="q">关键词</label><input id="q" type="search" placeholder="标题、介绍、研究主题…"></div>
+      <div><label for="kind">类型</label><select id="kind"><option value="">全部类型</option></select></div>
+      <div><label for="venue">会议 / 期刊</label><select id="venue"><option value="">全部场所</option></select></div>
+      <div><label for="year">年份</label><select id="year"><option value="">全部年份</option></select></div>
+    </div>
+    <div class="meta"><div id="count"></div><div><a href="README.md">主题地图</a> · <a href="VENUES.md">Markdown 场所索引</a> · <a href="CURATION_NOTES.md">收录依据</a></div></div>
+    <div id="results" class="grid"></div>
+  </main>
+  <script id="paper-data" type="application/json">__PAPER_DATA__</script>
+  <script>
+    const papers = JSON.parse(document.getElementById('paper-data').textContent);
+    const controls = Object.fromEntries(['q','kind','venue','year'].map(id => [id,document.getElementById(id)]));
+    const results = document.getElementById('results');
+    const count = document.getElementById('count');
+    const labels = {Conference:'会议',Journal:'期刊',Workshop:'Workshop','Preprint / other':'预印本 / 其他'};
+    function populate(select,values) {
+      for (const value of values) { const option=document.createElement('option'); option.value=value; option.textContent=value; select.append(option); }
+    }
+    populate(controls.kind,[...new Set(papers.map(p=>p.kind))].map(x=>x).sort());
+    for (const option of controls.kind.options) if (labels[option.value]) option.textContent=labels[option.value];
+    populate(controls.venue,[...new Set(papers.map(p=>p.venue))].sort((a,b)=>a.localeCompare(b)));
+    populate(controls.year,[...new Set(papers.map(p=>p.year).filter(Boolean))].sort((a,b)=>b-a));
+    function tag(text,className='') { const span=document.createElement('span'); span.className='tag '+className; span.textContent=text; return span; }
+    function link(text,url) { const a=document.createElement('a'); a.href=url; a.textContent=text; a.target='_blank'; a.rel='noopener noreferrer'; return a; }
+    function card(p) {
+      const a=document.createElement('article'),tags=document.createElement('div'); tags.className='tags';
+      tags.append(tag(labels[p.kind]||p.kind),tag(p.venue),tag(p.year||'年份未注明','year'));
+      a.append(tags);
+      const h=document.createElement('h2'); h.textContent=p.title; a.append(h);
+      if (p.status==='author_reported_acceptance_official_page_pending') { const n=document.createElement('div'); n.className='note'; n.textContent='作者公布录用；官方论文页待发布'; a.append(n); }
+      const d=document.createElement('p'); d.textContent=p.description||'介绍待补充'; a.append(d);
+      const links=document.createElement('div'); links.className='links';
+      if (p.paper_url) links.append(link('论文',p.paper_url));
+      if (p.pdf_url) links.append(link('PDF',p.pdf_url));
+      if (p.venue_url) links.append(link(p.kind==='Journal'?'期刊':'会议',p.venue_url));
+      a.append(links); return a;
+    }
+    function render() {
+      const q=controls.q.value.trim().toLocaleLowerCase();
+      const filtered=papers.filter(p=>(!controls.kind.value||p.kind===controls.kind.value)&&(!controls.venue.value||p.venue===controls.venue.value)&&(!controls.year.value||String(p.year)===controls.year.value)&&(!q||[p.title,p.description,p.category,p.venue].join(' ').toLocaleLowerCase().includes(q)));
+      filtered.sort((a,b)=>b.year-a.year||a.venue.localeCompare(b.venue)||a.title.localeCompare(b.title));
+      count.replaceChildren(); const strong=document.createElement('strong'); strong.textContent=filtered.length; count.append(strong,document.createTextNode(' / '+papers.length+' 条论文与资源'));
+      results.replaceChildren();
+      if (!filtered.length) { const n=document.createElement('div'); n.className='empty'; n.textContent='没有匹配条目，请调整筛选条件。'; results.append(n); return; }
+      const fragment=document.createDocumentFragment(); for (const p of filtered) fragment.append(card(p)); results.append(fragment);
+    }
+    for (const control of Object.values(controls)) control.addEventListener('input',render);
+    render();
+  </script>
+</body>
+</html>
